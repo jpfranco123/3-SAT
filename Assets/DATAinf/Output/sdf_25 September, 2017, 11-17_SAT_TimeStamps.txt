@@ -1,0 +1,9 @@
+PartcipantID:sdf
+InitialTimeStamp:11-17-56-121
+block;trial;eventType;elapsedTime
+1;1;Trial;93
+1;1;ParticipantSkip;1794
+1;1;TrialAnswer;1840
+1;1;ParticipantAnswer;2858
+1;1;InterTrialRest;2886
+1;2;Trial;6042

@@ -1,0 +1,4 @@
+PartcipantID:jhg
+InitialTimeStamp:14-59-52-703
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;TrialAnswer;29277

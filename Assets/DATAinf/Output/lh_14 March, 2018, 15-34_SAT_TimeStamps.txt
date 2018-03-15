@@ -1,0 +1,4 @@
+PartcipantID:lh
+InitialTimeStamp:15-34-10-701
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;TrialAnswer;780310

@@ -1,0 +1,8 @@
+PartcipantID:dfv
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
+1;1;0;0;0.1202931;1;5;
+1;2;1;1;0.03303814;0;2;
+1;3;0;0;0.03275776;1;9;
+1;4;0;1;0.03999996;1;10;
+1;5;1;1;0.169708;0;6;
+1;6;1;0;0.09284592;0;12;

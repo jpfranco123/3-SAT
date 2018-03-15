@@ -1,0 +1,3 @@
+PartcipantID:khg
+InitialTimeStamp:16-12-57-515
+block;trial;clicknumber;Variable;Literal;time

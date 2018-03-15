@@ -1,0 +1,3 @@
+PartcipantID:kug
+InitialTimeStamp:16-08-48-744
+block;trial;clicknumber;Variable;Literal;time

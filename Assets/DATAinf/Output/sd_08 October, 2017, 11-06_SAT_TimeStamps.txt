@@ -1,0 +1,13 @@
+PartcipantID:sd
+InitialTimeStamp:11-06-43-242
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;5;Trial;85;sd
+1;1;5;ParticipantSkip;1108;sd
+1;1;5;TrialAnswer;1154;sd
+1;1;5;ParticipantAnswer;1786;sd
+1;1;5;InterTrialRest;1816;sd
+1;2;2;Trial;4963;sd
+1;2;2;ParticipantSkip;5515;sd
+1;2;2;TrialAnswer;5551;sd
+1;2;2;ParticipantAnswer;5642;sd
+1;2;2;InterTrialRest;5683;sd

@@ -1,0 +1,4 @@
+PartcipantID:kj
+InitialTimeStamp:18-11-22-292
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;110

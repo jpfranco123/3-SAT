@@ -1,0 +1,4 @@
+PartcipantID:sd
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
+1;1;0;0;0.6006613;0;5;
+1;2;0;0;0.0333519;1;2;

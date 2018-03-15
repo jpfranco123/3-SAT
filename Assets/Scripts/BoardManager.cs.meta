@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4114396dae93040678775d03810b3d6b
+timeCreated: 1520998639
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - whitesprite: {fileID: 21300000, guid: c0e304d291839431480138cd3e49277a, type: 3}
+  - bluesprite: {fileID: 21300000, guid: b274bb09831764fa1abfc1df15528fe3, type: 3}
+  - orangesprite: {fileID: 21300000, guid: 2afb58312af9c4b32ac10e6da3290290, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,3 @@
+PartcipantID:ss
+InitialTimeStamp:18-37-24-604
+block;trial;clicknumber;Variable;Literal;time

@@ -1,0 +1,4 @@
+PartcipantID:sdf
+InitialTimeStamp:11-25-47-114
+block;trial;eventType;elapsedTime
+1;1;Trial;92

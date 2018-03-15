@@ -1,0 +1,4 @@
+PartcipantID:kjg
+InitialTimeStamp:13-22-28-332
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;102

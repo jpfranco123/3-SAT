@@ -1,0 +1,3 @@
+PartcipantID:jhg
+InitialTimeStamp:17-03-53-488
+block;trial;clicknumber;Variable;Literal;time
