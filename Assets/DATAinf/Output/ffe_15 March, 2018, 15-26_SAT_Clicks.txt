@@ -1,0 +1,3 @@
+PartcipantID:ffe
+InitialTimeStamp:15-27-07-021
+block;trial;clicknumber;Variable;Literal;time

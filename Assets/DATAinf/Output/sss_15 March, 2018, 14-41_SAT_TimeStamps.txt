@@ -1,0 +1,6 @@
+PartcipantID:sss
+InitialTimeStamp:14-41-27-321
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;TrialAnswer;178
+1;1;InterTrialRest;3315
+1;2;TrialAnswer;6576

@@ -1,0 +1,3 @@
+PartcipantID:werew
+InitialTimeStamp:14-25-56-917
+block;trial;clicknumber;Variable;Literal;time

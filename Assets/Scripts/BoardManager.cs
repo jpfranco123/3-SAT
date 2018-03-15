@@ -323,13 +323,13 @@ public class BoardManager : MonoBehaviour {
 	/// </summary>
 	void placeClause(Clause ClauseToLocate, Vector3 position, int clauseNumber){
 		//Setting the position in a separate line is importatant in order to set it according to global coordinates.
-		Debug.Log("Hi");
 		ClauseToLocate.gameClause.transform.position = position;
 
 		gumbs[clauseNumber].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber]);});
 		gumbs[clauseNumber+1].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber+1]);});
 		gumbs[clauseNumber+2].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber+2]);});
 
+		//ClickDetect (gumbs [clauseNumber]);
 	}
 
 
@@ -641,7 +641,11 @@ public class BoardManager : MonoBehaviour {
 			gumbs [i].gstate = newstates [i];
 		}
 
-		ChangeColour (Gumbo, oldstates, newstates);
+		Debug.Log ("State change");
+		Debug.Log (oldstates[Gumbo.gitemnumber]);
+		Debug.Log(newstates[Gumbo.gitemnumber]);
+		//66
+		//ChangeColour (Gumbo, oldstates, newstates);
 
 	}
 
