@@ -380,7 +380,7 @@ public class GameManager : MonoBehaviour
 		string[] lines = new string[clicksList.Count];
 		int i = 0;
 		foreach (Vector4 clickito in clicksList) {
-			lines[i]= block + ";" + trial + ";" + clickito.x + ";" + clickito.z + ";" + clickito.y + ";" + clickito.w ;
+			lines[i]= block + ";" + trial + ";" + clickito.x + ";" + clickito.y + ";" + clickito.z + ";" + clickito.w ;
 			i++;
 		}
 		//This location can be used by unity to save a file if u open the game in any platform/computer:      Application.persistentDataPath;
@@ -671,35 +671,35 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-//	/// <summary>
-//	/// Extracts the items that were finally selected based on the sequence of clicks.
-//	/// </summary>
-//	/// <returns>The items selected.</returns>
-//	/// <param name="itemClicks"> Sequence of clicks on the items.</param>
-//	private static string extractItemsSelected (List <Vector4> itemClicks){
-//		List<int> itemsIn = new List<int>();
-//		foreach(Vector4 clickito in itemClicks){
-//			if (clickito.z == 1) {
-//				itemsIn.Add (Convert.ToInt32 (clickito.x));
-//			} else if (clickito.z == 0) {
-//				itemsIn.Remove (Convert.ToInt32 (clickito.x));
-//			} else if (clickito.z == 3) {
-//				itemsIn.Clear ();
-//			}
-//		}
-//
-//		string itemsInS = "";
-//		foreach (int i in itemsIn)
-//		{
-//			itemsInS = itemsInS + i + ",";
-//		}
-//		if(itemsInS.Length>0)
-//			itemsInS = itemsInS.Remove (itemsInS.Length - 1);
-//
-//		return itemsInS;
-//	}
-//
-//
+	//	/// <summary>
+	//	/// Extracts the items that were finally selected based on the sequence of clicks.
+	//	/// </summary>
+	//	/// <returns>The items selected.</returns>
+	//	/// <param name="itemClicks"> Sequence of clicks on the items.</param>
+	//	private static string extractItemsSelected (List <Vector4> itemClicks){
+	//		List<int> itemsIn = new List<int>();
+	//		foreach(Vector4 clickito in itemClicks){
+	//			if (clickito.z == 1) {
+	//				itemsIn.Add (Convert.ToInt32 (clickito.x));
+	//			} else if (clickito.z == 0) {
+	//				itemsIn.Remove (Convert.ToInt32 (clickito.x));
+	//			} else if (clickito.z == 3) {
+	//				itemsIn.Clear ();
+	//			}
+	//		}
+	//
+	//		string itemsInS = "";
+	//		foreach (int i in itemsIn)
+	//		{
+	//			itemsInS = itemsInS + i + ",";
+	//		}
+	//		if(itemsInS.Length>0)
+	//			itemsInS = itemsInS.Remove (itemsInS.Length - 1);
+	//
+	//		return itemsInS;
+	//	}
+	//
+	//
 
 	//Randomizes The Location of the Yes/No button for a whole block.
 	void randomizeButtons()

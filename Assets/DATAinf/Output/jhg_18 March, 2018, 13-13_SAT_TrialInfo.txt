@@ -1,0 +1,4 @@
+PartcipantID:jhg
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
+PartcipantID:jhg
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error

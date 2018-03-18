@@ -1,0 +1,6 @@
+PartcipantID:jhg
+InitialTimeStamp:13-13-08-614
+block;trial;clicknumber;Variable;Literal;time
+PartcipantID:jhg
+InitialTimeStamp:13-13-40-593
+block;trial;clicknumber;Variable;Literal;time

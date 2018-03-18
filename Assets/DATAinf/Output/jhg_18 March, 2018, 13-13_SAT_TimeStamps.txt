@@ -1,0 +1,8 @@
+PartcipantID:jhg
+InitialTimeStamp:13-13-08-614
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;105
+PartcipantID:jhg
+InitialTimeStamp:13-13-40-593
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;89

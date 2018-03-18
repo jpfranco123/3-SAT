@@ -1,10 +1,4 @@
-﻿/*consider adding clicking functionality to the buttons, turning them a light blue colour if clicked upon. rather than every corresponding literal then 
- * automatically being clicked, just leave it as the button in question. then the participant has some help, and they do not need to keep everything in their
- * memory, but it won't be so much help such that it becomes too easy. if a participant makes a mistake by clicking on both a variable and its negation, both
- * will turn the same colour, and the participant would need to be made aware of this i.e. every button they click will light up the same colour, regardless of
- * whether this contradicts previous moves, whether it is correct, or whether it is incorrect */
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,7 +71,7 @@ public class BoardManager : MonoBehaviour {
 	//1: No/Yes 0: Yes/No
 	public static int randomYes;//=Random.Range(0,2);
 
-	public int clickNumber=0;
+	public int clickNumber;
 
 	//These variables shouldn't be modified. They just state that the area of the value part of the Clause and the weight part are assumed to be 1.
 	//	private static float minAreaBill = 1f;
@@ -400,6 +394,7 @@ public class BoardManager : MonoBehaviour {
 		if (sceneToSetup == "Trial") 
 		{
 			itemClicks.Clear ();
+			clickNumber = 1;
 			//InitialiseList();
 			setSATInstance ();
 			//If the bool returned by LayoutObjectAtRandom() is false, then retry again:
@@ -642,7 +637,7 @@ public class BoardManager : MonoBehaviour {
 		}
 
 		Debug.Log ("State change");
-		Debug.Log (oldstates[Gumbo.gitemnumber]);
+//		Debug.Log (oldstates[Gumbo.gitemnumber]);
 		Debug.Log(newstates[Gumbo.gitemnumber]);
 		//66
 		//ChangeColour (Gumbo, oldstates, newstates);
