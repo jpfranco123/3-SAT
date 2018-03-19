@@ -1,0 +1,14 @@
+PartcipantID:kjh
+InitialTimeStamp:18-05-20-868
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;216
+1;1;ParticipantSkip;5173
+1;1;TrialAnswer;5241
+1;1;ParticipantAnswer;5549
+1;1;InterTrialRest;5606
+1;2;Trial;13712
+1;2;ParticipantSkip;21519
+1;2;TrialAnswer;21575
+1;2;ParticipantAnswer;22119
+1;2;InterTrialRest;22166
+1;3;Trial;25364

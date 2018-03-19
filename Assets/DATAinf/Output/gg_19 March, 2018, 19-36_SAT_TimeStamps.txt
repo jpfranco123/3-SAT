@@ -1,0 +1,9 @@
+PartcipantID:gg
+InitialTimeStamp:19-36-41-789
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;92
+1;1;ParticipantSkip;39158
+1;1;TrialAnswer;39225
+1;1;ParticipantAnswer;40933
+1;1;InterTrialRest;40988
+1;2;Trial;44217

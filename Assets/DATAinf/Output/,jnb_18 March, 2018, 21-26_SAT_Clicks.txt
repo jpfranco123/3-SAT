@@ -1,0 +1,6 @@
+PartcipantID:,jnb
+InitialTimeStamp:21-26-11-505
+block;trial;clicknumber;Variable;Literal;time
+PartcipantID:,jnb
+InitialTimeStamp:21-26-44-861
+block;trial;clicknumber;Variable;Literal;time

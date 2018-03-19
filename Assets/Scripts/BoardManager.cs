@@ -106,6 +106,7 @@ public class BoardManager : MonoBehaviour {
 	private struct Gumb
 	{
 		public Button InterfaceGumb;
+		public SpriteRenderer ColourGumb;
 		public Vector2 gcenter;
 		public int gitemnumber;
 		public int gstate;
@@ -221,6 +222,7 @@ public class BoardManager : MonoBehaviour {
 		gumbs [ItemNumber].gstate = 0;
 		gumbs [ItemNumber].gitemnumber = ItemNumber;
 		gumbs [ItemNumber].InterfaceGumb = Button.GetComponent<Button>();
+		gumbs [ItemNumber].ColourGumb = Button.GetComponent<SpriteRenderer>();
 
 		//Button1
 		//Gumb gumbs[ItemNumber+1] = new Gumb();
@@ -229,6 +231,7 @@ public class BoardManager : MonoBehaviour {
 		gumbs [ItemNumber+1].gstate = 0;
 		gumbs [ItemNumber+1].gitemnumber = ItemNumber+1;
 		gumbs [ItemNumber+1].InterfaceGumb = Button1.GetComponent<Button>();
+		gumbs [ItemNumber+1].ColourGumb = Button1.GetComponent<SpriteRenderer>();
 
 		//Button2
 		//Gumb gumbs[ItemNumber+2] = new Gumb();
@@ -237,6 +240,7 @@ public class BoardManager : MonoBehaviour {
 		gumbs [ItemNumber+2].gstate = 0;
 		gumbs [ItemNumber+2].gitemnumber = ItemNumber+2;
 		gumbs [ItemNumber+2].InterfaceGumb = Button2.GetComponent<Button>();
+		gumbs [ItemNumber+2].ColourGumb = Button2.GetComponent<SpriteRenderer>();
 
 //		gumbs[ItemNumber].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[ItemNumber]);});
 //		gumbs[ItemNumber+1].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[ItemNumber+1]);});
@@ -590,18 +594,45 @@ public class BoardManager : MonoBehaviour {
 	// ItemNumber (a number between 1 and the number of items. It corresponds to the index in the weight's (and value's) vector.)
 	// Item is being selected In/Out (1/0) 
 	// Time of the click with respect to the beginning of the trial 
-	public static List <Vector4> itemClicks =  new List<Vector4> ();
+	//public static List <Vector4> itemClicks =  new List<Vector4> ();
+
+	public struct itemClick
+	{
+		public int clickNumber;
+		public int gvariable;
+		public int gliteral;
+		public int state;
+		public float time;
+	}
+
+	//The Clauses for the scene are stored here.
+	public static List <itemClick> itemClicks = new List<itemClick>();
+
+
+	//public static itemClicks[] =  new List<Vector4> ();
 
 	//Function that takes click as input and stores [c,b]
 	private void ClickDetect (Gumb Gumbo)
 	{
-		Debug.Log("Hi");
+		if (clickNumber <= GameManager.maxClicks) {
 
-		ChangeState (Gumbo);
+			ChangeState (Gumbo);
 
-		itemClicks.Add (new Vector4 (clickNumber,Gumbo.gvariable,Gumbo.gliteral,GameManager.timeTrial - GameManager.tiempo));
+			itemClick itemClick1 = new itemClick ();
 
-		clickNumber = clickNumber+1;
+			Gumb newGumb = gumbs [Gumbo.gitemnumber];
+		
+			itemClick1.clickNumber = clickNumber;
+			itemClick1.gvariable = newGumb.gvariable;
+			itemClick1.gliteral = newGumb.gliteral;
+			itemClick1.time = GameManager.timeQuestion - GameManager.tiempo;
+			itemClick1.state = newGumb.gstate;
+
+			//itemClicks.Add (new Vector4 (clickNumber,Gumbo.gvariable,Gumbo.gliteral,GameManager.timeQuestion - GameManager.tiempo));
+			itemClicks.Add (itemClick1);
+
+			clickNumber = clickNumber + 1;
+		}
 	}
 
 	private void ChangeState(Gumb Gumbo)
@@ -636,11 +667,11 @@ public class BoardManager : MonoBehaviour {
 			gumbs [i].gstate = newstates [i];
 		}
 
-		Debug.Log ("State change");
+//		Debug.Log ("State change");
 //		Debug.Log (oldstates[Gumbo.gitemnumber]);
-		Debug.Log(newstates[Gumbo.gitemnumber]);
+//		Debug.Log(newstates[Gumbo.gitemnumber]);
 		//66
-		//ChangeColour (Gumbo, oldstates, newstates);
+		ChangeColour (oldstates, newstates);
 
 	}
 
@@ -649,29 +680,52 @@ public class BoardManager : MonoBehaviour {
 	public Sprite bluesprite;
 	public Sprite orangesprite;
 
-	private SpriteRenderer spriteRenderer; 
+//	private SpriteRenderer spriteRenderer; 
 
 
-	private void ChangeColour (Gumb Gumbo, int[] oldstates, int[] newstates)
+	private void ChangeColour (int[] oldstates, int[] newstates)
 	{
-//		ColourGumb = Gumbo.InterfaceGumb.GetComponents<SpriteRenderer>();
 
 		for (int i = 0; i < gumbs.Length; i++) {
 			if (oldstates [i] != newstates [i]) {
 				if (gumbs [i].gstate == 1) { 
-					spriteRenderer.sprite = bluesprite;
+					gumbs[i].ColourGumb.sprite = bluesprite;
 				} else if (gumbs [i].gstate == 2) {
-					spriteRenderer.sprite = orangesprite; 
+					gumbs[i].ColourGumb.sprite = orangesprite; 
 				} else {
-					spriteRenderer.sprite = whitesprite;
+					gumbs[i].ColourGumb.sprite = whitesprite;
 				}
-			}
-			else {
 			}
 		}
 
 	}
 
+//	//the sprites for each button
+//	public Image whiteimage;
+//	public Image blueimage;
+//	public Image orangeimage;
+//
+//	private SpriteRenderer spriteRenderer; 
+//
+//
+//	private void ChangeColour (Gumb Gumbo, int[] oldstates, int[] newstates)
+//	{
+//
+//		for (int i = 0; i < gumbs.Length; i++) {
+//			if (oldstates [i] != newstates [i]) {
+//				if (gumbs [i].gstate == 1) { 
+//					Gumbo.ColourGumb = blueimage;
+//				} else if (gumbs [i].gstate == 2) {
+//					Gumbo.ColourGumb = orangeimage; 
+//				} else {
+//					Gumbo.ColourGumb = whiteimage;
+//				}
+//			}
+//			else {
+//			}
+//		}
+//
+//	}
 
 	//necessary?
 	//Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.

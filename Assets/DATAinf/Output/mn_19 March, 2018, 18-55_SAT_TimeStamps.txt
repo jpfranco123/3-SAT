@@ -1,0 +1,4 @@
+PartcipantID:mn
+InitialTimeStamp:18-55-12-709
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;107

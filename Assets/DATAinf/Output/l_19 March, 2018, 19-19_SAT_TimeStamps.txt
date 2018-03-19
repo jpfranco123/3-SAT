@@ -1,0 +1,4 @@
+PartcipantID:l
+InitialTimeStamp:19-19-21-478
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;115

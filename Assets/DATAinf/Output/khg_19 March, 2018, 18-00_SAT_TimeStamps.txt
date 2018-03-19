@@ -1,0 +1,14 @@
+PartcipantID:khg
+InitialTimeStamp:18-00-56-877
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;120
+1;1;ParticipantSkip;4219
+1;1;TrialAnswer;4279
+1;1;ParticipantAnswer;4872
+1;1;InterTrialRest;4921
+1;2;Trial;8121
+1;2;ParticipantSkip;12627
+1;2;TrialAnswer;12681
+1;2;ParticipantAnswer;13287
+1;2;InterTrialRest;13325
+1;3;Trial;16577

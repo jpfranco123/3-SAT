@@ -1,0 +1,8 @@
+PartcipantID:kjh
+InitialTimeStamp:19-20-09-181
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;102
+PartcipantID:kjh
+InitialTimeStamp:19-20-16-515
+block;trial;instanceNumber;eventType;elapsedTime
+1;1;Trial;100

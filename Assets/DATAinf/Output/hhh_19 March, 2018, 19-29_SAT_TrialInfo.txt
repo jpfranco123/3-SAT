@@ -1,0 +1,3 @@
+PartcipantID:hhh
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
+1;1;1;1;0.3107886;1;5;

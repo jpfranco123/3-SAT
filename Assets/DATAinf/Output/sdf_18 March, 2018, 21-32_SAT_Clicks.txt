@@ -1,0 +1,3 @@
+PartcipantID:sdf
+InitialTimeStamp:21-32-23-160
+block;trial;clicknumber;Variable;Literal;time

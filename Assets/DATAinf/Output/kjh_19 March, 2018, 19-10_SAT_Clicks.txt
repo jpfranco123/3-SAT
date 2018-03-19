@@ -1,0 +1,3 @@
+PartcipantID:kjh
+InitialTimeStamp:19-10-29-838
+block;trial;clicknumber;Variable;Literal;state;time

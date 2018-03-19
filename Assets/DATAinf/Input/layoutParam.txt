@@ -3,3 +3,4 @@ rows:5
 randomPlacementType:1
 totalAreaBill:9
 totalAreaWeight:9
+maxClicks:10

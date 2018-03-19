@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 	//Current Scene
 	public static string escena;
 
-	//Time spent so far on this scene
+	//Time remaining on this scene
 	public static float tiempo;
 
 	//Total time for this scene
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 	public static float timeRest2=10;
 
 	//Time given for each trial (The total time the items are shown -With and without the question-)
-	public static float timeTrial=10;
+	//public static float timeTrial=10;
 
 	//Time for seeing the SAT question 
 	public static float timeQuestion=10;
@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 	//This is also taken from input files, so in reality 63 instance files are loaded, not 3
 	//Number of instance files to be considered. From i1.txt to i_.txt..
 	public static int numberOfInstances = 3;
+
+	//Maximum amount of clicks allowed in each trial
+	public static int maxClicks;
 
 	//The order of the instances to be presented
 	public static int[] instanceRandomization;
@@ -292,11 +295,12 @@ public class GameManager : MonoBehaviour
 				outputFile.WriteLine(line);
 		}
 
-		//Headerds for Clicks file
+		//Headers for Clicks file
 		string[] lines2 = new string[3];
 		lines2[0]="PartcipantID:" + participantID;
 		lines2[1] = "InitialTimeStamp:" + initialTimeStamp;
-		lines2[2]="block;trial;clicknumber;Variable;Literal;time"; 
+		lines2[2]="block;trial;clicknumber;Variable;Literal;state;time"; 
+
 		using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "Clicks.txt",true)) {
 			foreach (string line in lines2)
 				outputFile.WriteLine(line);
@@ -372,15 +376,15 @@ public class GameManager : MonoBehaviour
 	/// Saves the time stamp of every click made on the items 
 	/// </summary>
 	/// block ; trial ; clicklist (i.e. item number ; itemIn? (1: selcting; 0:deselecting) ; time of the click with respect to the begining of the trial)
-	public static void saveClicks(List<Vector4> clicksList) {
+	public static void saveClicks(List<BoardManager.itemClick> clicksList) {
 
 		string folderPathSave = Application.dataPath + outputFolder;
 
 
 		string[] lines = new string[clicksList.Count];
 		int i = 0;
-		foreach (Vector4 clickito in clicksList) {
-			lines[i]= block + ";" + trial + ";" + clickito.x + ";" + clickito.y + ";" + clickito.z + ";" + clickito.w ;
+		foreach (BoardManager.itemClick iC in clicksList) {
+			lines [i] = block + ";" + trial + ";" + iC.clickNumber + ";" + iC.gvariable + ";" + iC.gliteral + ";" + iC.state + ";" + iC.time;
 			i++;
 		}
 		//This location can be used by unity to save a file if u open the game in any platform/computer:      Application.persistentDataPath;
@@ -447,6 +451,7 @@ public class GameManager : MonoBehaviour
 			string nvariablesS;
 			string nliteralsS;
 			string solutionS;
+
 
 			//grab all of those parameters as strings
 			dict.TryGetValue ("variables", out variablesS);
@@ -545,6 +550,8 @@ public class GameManager : MonoBehaviour
 		string numberOfBlocksS;
 		string numberOfInstancesS;
 		string instanceRandomizationS;
+		string maxClicksS;
+
 
 		dictionary.TryGetValue ("timeRest1", out timeRest1S);
 		dictionary.TryGetValue ("timeRest2", out timeRest2S);
@@ -559,6 +566,9 @@ public class GameManager : MonoBehaviour
 
 		dictionary.TryGetValue ("numberOfInstances", out numberOfInstancesS);
 
+		dictionary.TryGetValue ("maxClicks", out maxClicksS);
+
+
 		timeRest1=Convert.ToSingle (timeRest1S);
 		timeRest2=Convert.ToSingle (timeRest2S);
 		timeQuestion=Int32.Parse(timeQuestionS);
@@ -566,6 +576,7 @@ public class GameManager : MonoBehaviour
 		numberOfTrials=Int32.Parse(numberOfTrialsS);
 		numberOfBlocks=Int32.Parse(numberOfBlocksS);
 		numberOfInstances=Int32.Parse(numberOfInstancesS);
+		maxClicks=Int32.Parse(maxClicksS);
 
 		dictionary.TryGetValue ("instanceRandomization", out instanceRandomizationS);
 		//If instanceRandomization is not included in the parameters file. It generates a randomization.
@@ -630,7 +641,7 @@ public class GameManager : MonoBehaviour
 
 
 	//Takes care of changing the Scene to the next one (Except for when in the setup scene)
-	public static void changeToNextScene(List <Vector4> itemClicks, int answer, int randomYes)
+	public static void changeToNextScene(List <BoardManager.itemClick> itemClicks, int answer, int randomYes)
 	{
 		BoardManager.keysON = false;
 		if (escena == "SetUp") {
@@ -781,7 +792,7 @@ public class GameManager : MonoBehaviour
 		BoardManager.keysON = false;
 		int answer = 3;
 		int randomYes = -1;
-		save (answer, timeTrial, randomYes, errorDetails);
+		save (answer, timeQuestion - tiempo, randomYes, errorDetails);
 		changeToNextTrial ();
 	}
 
