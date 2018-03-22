@@ -1,0 +1,3 @@
+PartcipantID:mhg
+InitialTimeStamp:22-34-20-220
+block;trial;clicknumber;Variable;Literal;state;time

@@ -1,0 +1,3 @@
+PartcipantID:kj
+InitialTimeStamp:22-55-17-018
+block;trial;clicknumber;Variable;Literal;state;time

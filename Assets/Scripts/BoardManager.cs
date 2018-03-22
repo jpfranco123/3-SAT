@@ -130,7 +130,7 @@ public class BoardManager : MonoBehaviour {
 				float yUnit = (float)(resolutionHeight / 100) / rows;
 				//1 x unit = 320x positions in unity, whilst 1 y unit = 336y grid positions in unity
 				//gridPositions.Add (new Vector3 ((x-0.8f) * xUnit, (y-0.7619f) * yUnit, 0f)); //- top left value in the right spot, everything else not quite
-				gridPositions.Add (new Vector3 ((x) * xUnit, (y+0.4f) * yUnit, 0f));
+				gridPositions.Add (new Vector3 ((x) * xUnit, (y+0.2f) * yUnit, 0f));
 				Debug.Log ("x" + x + " y" + y);
 			}
 		}
@@ -672,7 +672,7 @@ public class BoardManager : MonoBehaviour {
 //		Debug.Log(newstates[Gumbo.gitemnumber]);
 		//66
 		ChangeColour (oldstates, newstates);
-
+//		setElementSelectionButtons ();
 	}
 
 	//the sprites for each button
@@ -700,32 +700,21 @@ public class BoardManager : MonoBehaviour {
 
 	}
 
-//	//the sprites for each button
-//	public Image whiteimage;
-//	public Image blueimage;
-//	public Image orangeimage;
+//	/// <summary>
+//	/// The action to be taken when a button is pressed: Toggles the light and adds the click to itemClicks
+//	/// </summary>
+//	/// <param name="itemToLocate"> item clicked </param>
+//	private void setElementSelectionButtons(){
 //
-//	private SpriteRenderer spriteRenderer; 
+//		int itemN = Clauses.ItemNumber;
 //
+//		Light myLight = Clauses.gameClause.GetComponent<Light> ();
+//		myLight.enabled = !myLight.enabled;
 //
-//	private void ChangeColour (Gumb Gumbo, int[] oldstates, int[] newstates)
-//	{
-//
-//		for (int i = 0; i < gumbs.Length; i++) {
-//			if (oldstates [i] != newstates [i]) {
-//				if (gumbs [i].gstate == 1) { 
-//					Gumbo.ColourGumb = blueimage;
-//				} else if (gumbs [i].gstate == 2) {
-//					Gumbo.ColourGumb = orangeimage; 
-//				} else {
-//					Gumbo.ColourGumb = whiteimage;
-//				}
-//			}
-//			else {
-//			}
-//		}
-//
+//		int itemIn=(myLight.enabled)? 1 : 0 ;
 //	}
+//
+
 
 	//necessary?
 	//Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.

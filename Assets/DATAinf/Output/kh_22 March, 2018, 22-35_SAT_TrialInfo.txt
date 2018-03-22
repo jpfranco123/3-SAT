@@ -1,0 +1,4 @@
+PartcipantID:kh
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
+1;1;0;0;0.05561209;0;5;
+1;2;1;1;0.02665424;1;2;
