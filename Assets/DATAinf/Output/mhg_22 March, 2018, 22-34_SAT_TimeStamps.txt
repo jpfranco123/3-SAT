@@ -1,4 +1,0 @@
-PartcipantID:mhg
-InitialTimeStamp:22-34-20-220
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;141

@@ -1,3 +1,0 @@
-PartcipantID:jn
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
-1;1;0;0;0.1987786;1;5;

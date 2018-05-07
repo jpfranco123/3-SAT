@@ -1,3 +1,0 @@
-PartcipantID:jgf
-InitialTimeStamp:15-58-43-762
-block;trial;clicknumber;Variable;Literal;time

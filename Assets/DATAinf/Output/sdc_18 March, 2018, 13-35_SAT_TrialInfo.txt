@@ -1,4 +1,0 @@
-PartcipantID:sdc
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
-1;1;0;0;0.481606;1;5;
-1;2;1;1;0.2993426;0;2;

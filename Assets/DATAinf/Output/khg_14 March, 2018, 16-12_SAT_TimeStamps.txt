@@ -1,4 +1,0 @@
-PartcipantID:khg
-InitialTimeStamp:16-12-57-515
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;284

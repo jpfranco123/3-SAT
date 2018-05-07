@@ -1,4 +1,0 @@
-PartcipantID:efr
-InitialTimeStamp:13-47-44-760
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;132

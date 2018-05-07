@@ -1,3 +1,0 @@
-PartcipantID:efr
-InitialTimeStamp:13-47-44-760
-block;trial;clicknumber;Variable;Literal;time

@@ -1,4 +1,0 @@
-PartcipantID:erf
-InitialTimeStamp:21-35-40-543
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;96

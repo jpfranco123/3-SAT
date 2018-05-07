@@ -1,3 +1,0 @@
-PartcipantID:dfv
-InitialTimeStamp:15-57-01-560
-block;trial;clicknumber;Variable;Literal;time

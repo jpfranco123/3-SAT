@@ -1,3 +1,0 @@
-PartcipantID:erf
-InitialTimeStamp:21-34-47-115
-block;trial;clicknumber;Variable;Literal;time

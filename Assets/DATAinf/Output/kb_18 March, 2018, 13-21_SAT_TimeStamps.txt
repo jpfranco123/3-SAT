@@ -1,4 +1,0 @@
-PartcipantID:kb
-InitialTimeStamp:13-21-03-720
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;112

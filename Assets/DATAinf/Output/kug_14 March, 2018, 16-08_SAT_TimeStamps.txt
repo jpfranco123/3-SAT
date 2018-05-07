@@ -1,4 +1,0 @@
-PartcipantID:kug
-InitialTimeStamp:16-08-48-744
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;98

@@ -1,6 +1,0 @@
-PartcipantID:kjh
-InitialTimeStamp:19-20-09-181
-block;trial;clicknumber;Variable;Literal;state;time
-PartcipantID:kjh
-InitialTimeStamp:19-20-16-515
-block;trial;clicknumber;Variable;Literal;state;time

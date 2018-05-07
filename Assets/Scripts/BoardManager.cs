@@ -169,7 +169,6 @@ public class BoardManager : MonoBehaviour {
 		//question = "Can you pack $" + GameManager.satinstances[randInstance].profit + " if your capacity is " + GameManager.satinstances[randInstance].capacity +"kg?";
 		//question = "$" + GameManager.satinstances[randInstance].profit + System.Environment.NewLine + GameManager.satinstances[randInstance].capacity +"kg?";
 		//question = " Max: " + System.Environment.NewLine + GameManager.satinstances[randInstance].capacity +"kg ";
-
 		v = GameManager.satinstances [randInstance].variables;
 		ls = GameManager.satinstances [randInstance].literals;
 		gumbs = new Gumb[v.Length];
@@ -526,31 +525,65 @@ public class BoardManager : MonoBehaviour {
 		GameObject start = GameObject.Find("Start") as GameObject;
 		start.SetActive (false);
 
-		//start.btnLeft.GetComponentInChildren<Text>().text = "No";
+		Debug.Log("Rand button");
+		GameObject rand = GameObject.Find("RandomisationID") as GameObject;
+		rand.SetActive (false);
 
+		//Participant Input
 		InputField pID = GameObject.Find ("ParticipantID").GetComponent<InputField>();
 
 		InputField.SubmitEvent se = new InputField.SubmitEvent();
 		//se.AddListener(submitPID(start));
-		se.AddListener((value)=>submitPID(value,start));
+		se.AddListener((value)=>submitPID(value,start,rand));
 		pID.onEndEdit = se;
 
+
+		//Randomisation Input
+		InputField rID = rand.GetComponent<InputField>();
+
+		InputField.SubmitEvent se2 = new InputField.SubmitEvent();
+		//se.AddListener(submitPID(start));
+		se2.AddListener((value)=>submitRandID(value,start));
+		rID.onEndEdit = se2;
 
 		//pID.onSubmit.AddListener((value) => submitPID(value));
 
 	}
 
-	private void submitPID(string pIDs, GameObject start)
+	private void submitPID(string pIDs, GameObject start, GameObject rand)
 	{
 		//Debug.Log (pIDs);
 
 		GameObject pID = GameObject.Find ("ParticipantID");
-		GameObject pIDT = GameObject.Find ("Participant ID Text");
 		pID.SetActive (false);
-		pIDT.SetActive (false);
+		//pIDT.SetActive (false);
 
 		//Set Participant ID
 		GameManager.participantID=pIDs;
+
+		//Activate Randomisation Listener
+		rand.SetActive (true);
+
+
+
+		//Activate Start Button and listener
+		//GameObject start = GameObject.Find("Start");
+		//start.SetActive (true);
+		//keysON = true;
+
+	}
+
+	private void submitRandID(string rIDs, GameObject start)
+	{
+		//Debug.Log (pIDs);
+
+		GameObject rID = GameObject.Find ("RandomisationID");
+		GameObject pIDT = GameObject.Find ("Participant ID Text");
+		rID.SetActive (false);
+		pIDT.SetActive (false);
+
+		//Set Participant ID
+		GameManager.randomisationID=rIDs;
 
 		//Activate Start Button and listener
 		//GameObject start = GameObject.Find("Start");
@@ -558,6 +591,7 @@ public class BoardManager : MonoBehaviour {
 		keysON = true;
 
 	}
+
 
 	public static string getClauseCoordinates()
 	{

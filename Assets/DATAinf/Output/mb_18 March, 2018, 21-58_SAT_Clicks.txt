@@ -1,3 +1,0 @@
-PartcipantID:mb
-InitialTimeStamp:21-58-17-246
-block;trial;clicknumber;Variable;Literal;time

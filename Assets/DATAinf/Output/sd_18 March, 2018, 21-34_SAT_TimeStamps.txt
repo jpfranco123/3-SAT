@@ -1,4 +1,0 @@
-PartcipantID:sd
-InitialTimeStamp:21-34-11-349
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;103

@@ -1,6 +1,3 @@
 columns:6
 rows:6
 randomPlacementType:1
-totalAreaBill:9
-totalAreaWeight:9
-maxClicks:10

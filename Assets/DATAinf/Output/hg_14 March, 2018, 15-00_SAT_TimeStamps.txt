@@ -1,4 +1,0 @@
-PartcipantID:hg
-InitialTimeStamp:15-00-50-755
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;TrialAnswer;2486

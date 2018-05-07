@@ -1,4 +1,0 @@
-PartcipantID:xx
-InitialTimeStamp:16-16-49-211
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;108

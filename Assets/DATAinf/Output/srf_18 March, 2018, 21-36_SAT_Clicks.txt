@@ -1,3 +1,0 @@
-PartcipantID:srf
-InitialTimeStamp:21-36-15-952
-block;trial;clicknumber;Variable;Literal;time

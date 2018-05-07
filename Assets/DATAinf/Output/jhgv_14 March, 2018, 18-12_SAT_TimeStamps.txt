@@ -1,4 +1,0 @@
-PartcipantID:jhgv
-InitialTimeStamp:18-12-16-817
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;118

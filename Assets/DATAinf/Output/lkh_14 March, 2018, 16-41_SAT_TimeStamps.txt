@@ -1,4 +1,0 @@
-PartcipantID:lkh
-InitialTimeStamp:16-41-28-325
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;126

@@ -1,3 +1,0 @@
-PartcipantID:sss
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
-1;1;2;0;120;0;5;

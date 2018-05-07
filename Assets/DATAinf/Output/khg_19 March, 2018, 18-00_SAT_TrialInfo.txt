@@ -1,4 +1,0 @@
-PartcipantID:khg
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
-1;1;0;0;0.4403372;1;5;
-1;2;0;0;0.4803147;1;2;

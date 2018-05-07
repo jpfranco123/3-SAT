@@ -1,9 +1,0 @@
-PartcipantID:erg
-InitialTimeStamp:13-45-24-237
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;145
-1;1;ParticipantSkip;14496
-1;1;TrialAnswer;14565
-1;1;ParticipantAnswer;14956
-1;1;InterTrialRest;14999
-1;2;Trial;18267

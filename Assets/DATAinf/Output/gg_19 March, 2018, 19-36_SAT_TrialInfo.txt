@@ -1,3 +1,0 @@
-PartcipantID:gg
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
-1;1;1;1;1.484369;0;5;

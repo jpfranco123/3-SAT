@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
 	//This is the string that will be used as the file name where the data is stored. DeCurrently the date-time is used.
 	public static string participantID = "Empty";
 
+	//This is the randomisation number (#_param2.txt that is to be used for oder of instances for this participant)
+	public static string randomisationID = "Empty";
+
 	public static string dateID = @System.DateTime.Now.ToString("dd MMMM, yyyy, HH-mm");
 
 	private static string identifierName;
@@ -159,8 +162,8 @@ public class GameManager : MonoBehaviour
 		if (escena == "SetUp") 
 		{
 			block++; 
-			loadParameters ();
-			loadSATInstance ();
+			//loadParameters ();
+			//loadSATInstance ();
 
 			//RandomizeSATInstances ();
 			randomizeButtons ();
@@ -222,10 +225,23 @@ public class GameManager : MonoBehaviour
 		if (escena != "SetUp") 
 		{
 			startTimer ();
-			//			pauseManager ();
+			pauseManager ();
 		}
 	}
 
+	//To pause press alt+p
+	//Pauses/Unpauses the game. Unpausing take syou directly to next trial
+	//Warning! When Unpausing the following happens:
+	//If paused/unpaused in scene 1 or 2 (while items are shown or during answer time) then saves the trialInfo with an error: "pause" without information on the items selected.
+	//If paused/unpaused on ITI or IBI then it generates a new row in trial Info with an error ("pause"). i.e. there are now 2 rows for the trial.
+	private void pauseManager(){
+		if (( Input.GetKey (KeyCode.LeftAlt) || Input.GetKey (KeyCode.RightAlt)) && Input.GetKeyDown (KeyCode.P) ){
+			Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
+			if(Time.timeScale==1){
+				errorInScene("Pause");
+			}
+		}
+	}
 
 
 
@@ -474,10 +490,11 @@ public class GameManager : MonoBehaviour
 	}
 
 	//Loads the parameters from the text files: param.txt and layoutParam.txt
-	void loadParameters()
+	private static void loadParameters()
 	{
 		//string folderPathLoad = Application.dataPath.Replace("Assets","") + "DATA/Input/";
 		string folderPathLoad = Application.dataPath + inputFolder;
+		string folderPathLoadInstances = Application.dataPath + inputFolderSATInstances;
 		var dict = new Dictionary<string, string>();
 
 		try 
@@ -511,8 +528,8 @@ public class GameManager : MonoBehaviour
 					dict.Add(tmp[0], tmp[1]);//int.Parse(dict[tmp[1]]);
 				}
 			}
-
-			using (StreamReader sr2 = new StreamReader (folderPathLoad + "param2.txt"))
+				
+			using (StreamReader sr2 = new StreamReader (folderPathLoadInstances + randomisationID + "_param2.txt"))
 			{
 
 				// (This loop reads every line until EOF or the first blank line.)
@@ -539,7 +556,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	//Assigns the parameters in the dictionary to variables
-	void assignVariables(Dictionary<string,string> dictionary)
+	private static void assignVariables(Dictionary<string,string> dictionary)
 	{
 		//Assigns Parameters - these are all going to be imported from input files
 		string timeRest1S;
@@ -646,6 +663,8 @@ public class GameManager : MonoBehaviour
 		BoardManager.keysON = false;
 		if (escena == "SetUp") {
 			Debug.Log ("SetUp");
+			loadParameters ();
+			loadSATInstance ();
 			saveHeaders ();
 			SceneManager.LoadScene ("Trial");
 		}

@@ -1,2 +1,0 @@
-PartcipantID:jgf
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error

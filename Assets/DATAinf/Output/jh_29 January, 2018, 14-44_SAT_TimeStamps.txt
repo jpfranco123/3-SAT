@@ -1,9 +1,0 @@
-PartcipantID:jh
-InitialTimeStamp:14-44-45-093
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;102
-1;1;ParticipantSkip;1869
-1;1;TrialAnswer;1918
-1;1;ParticipantAnswer;2547
-1;1;InterTrialRest;2585
-1;2;Trial;5662

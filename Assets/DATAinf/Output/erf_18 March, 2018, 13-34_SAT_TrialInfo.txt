@@ -1,4 +1,0 @@
-PartcipantID:erf
-block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;error
-1;1;1;1;0.3595707;0;5;
-1;2;1;1;0.4073043;0;2;

@@ -1,3 +1,0 @@
-PartcipantID:dd
-InitialTimeStamp:15-25-05-922
-block;trial;clicknumber;Variable;Literal;time

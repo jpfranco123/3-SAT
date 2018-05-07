@@ -1,4 +1,0 @@
-PartcipantID:dsds
-InitialTimeStamp:15-44-04-154
-block;trial;instanceNumber;eventType;elapsedTime
-1;1;Trial;157

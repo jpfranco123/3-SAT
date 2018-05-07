@@ -1,3 +1,0 @@
-PartcipantID:dsds
-InitialTimeStamp:15-44-04-154
-block;trial;clicknumber;Variable;Literal;time
