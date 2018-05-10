@@ -18,12 +18,6 @@ public class BoardManager : MonoBehaviour {
 	public static int columns = 4;
 	public static int rows = 4;
 
-	//The Clause radius. This is used to avoid superposition of Clauses.
-	//public static float KSClauseRadius = 1.5f;
-
-	//Timer width
-	//public static float timerWidth =400;
-
 	//A canvas where all the board is going to be placed
 	private GameObject canvas;
 
@@ -73,21 +67,6 @@ public class BoardManager : MonoBehaviour {
 
 	public int clickNumber;
 
-	//These variables shouldn't be modified. They just state that the area of the value part of the Clause and the weight part are assumed to be 1.
-	//	private static float minAreaBill = 1f;
-	//	private static float minAreaWeight = 1f;
-
-	//The total area of all the Clauses. Separated by the value part and the weighy part. A good initialization for this variables is the number of Clauses plus 1.
-	//	public static int totalAreaBill = 8;
-	//	public static int totalAreaWeight = 8;
-
-
-	// The list of all the button clicks on Clauses. Each event contains the following information:
-	// ItemNumber (a number between 1 and the number of Clauses. It corresponds to the index in the clause's (and literal's) vector.)
-	// Clause is being selected In/Out (1/0) 
-	// Time of the click with respect to the beginning of the trial 
-	//	public List <Vector3> ClauseClicks =  new List<Vector3> ();
-
 	//Structure with the relevant parameters of an Clause.
 	//gameClause: is the game object
 	//coorValue1: The coordinates of one of the corners of the encompassing rectangle of the Value Part of the Clause. The coordinates are taken relative to the center of the Clause.
@@ -123,9 +102,9 @@ public class BoardManager : MonoBehaviour {
 	void InitialiseList ()
 	{
 		gridPositions.Clear ();
-		//Simple 9 positions grid. 
+		//Simple 9 positions grid.
 		for (int y = 0; y < rows; y++) {
-			for (int x = 0; x < columns; x++) {	
+			for (int x = 0; x < columns; x++) {
 				float xUnit = (float)(resolutionWidth / 100) / columns;
 				float yUnit = (float)(resolutionHeight / 100) / rows;
 				//1 x unit = 320x positions in unity, whilst 1 y unit = 336y grid positions in unity
@@ -161,31 +140,13 @@ public class BoardManager : MonoBehaviour {
 	{
 		int randInstance = GameManager.instanceRandomization[GameManager.TotalTrial-1];
 
-		//		Text Quest = GameObject.Find("Question").GetComponent<Text>();
-		//		String question = "Can you obtain at least $" + GameManager.satinstances[randInstance].profit + " with at most " + GameManager.satinstances[randInstance].capacity +"kg?";
-		//		Quest.text = question;
-
-		//necessary?
-		//question = "Can you pack $" + GameManager.satinstances[randInstance].profit + " if your capacity is " + GameManager.satinstances[randInstance].capacity +"kg?";
-		//question = "$" + GameManager.satinstances[randInstance].profit + System.Environment.NewLine + GameManager.satinstances[randInstance].capacity +"kg?";
-		//question = " Max: " + System.Environment.NewLine + GameManager.satinstances[randInstance].capacity +"kg ";
 		v = GameManager.satinstances [randInstance].variables;
 		ls = GameManager.satinstances [randInstance].literals;
 		gumbs = new Gumb[v.Length];
-		//ButtonNumber = new int[v.Length];
-		//ClauseNumber = new int[v.Length];
-		//State = new int[v.Length];
 
 		SATClausePrefab = (GameObject)Resources.Load ("SATClause");
 
 	}
-
-	//Shows the question on the screen
-	//	public void setQuestion()
-	//	{
-	//		Text Quest = GameObject.Find("Question").GetComponent<Text>();
-	//		Quest.text = question;
-	//	}
 
 	/// <summary>
 	/// Instantiates an Clause and places it on the position from the input
@@ -197,17 +158,11 @@ public class BoardManager : MonoBehaviour {
 		//Instantiates the Clause and places it.
 		GameObject instance = Instantiate (SATClausePrefab, randomPosition, Quaternion.identity) as GameObject;
 
-		//specifying the literals per clause in case we end up deviating from 3-SAT to k-SAT (where k is not 3)
-//		int literalsPerClause = 3;
-
 		canvas=GameObject.Find("Canvas");
 		instance.transform.SetParent (canvas.GetComponent<Transform> (),false);
 
 		//Setting the position in a separate line is importatant in order to set it according to global coordinates.
 		instance.transform.position = randomPosition;
-
-		//instance.GetComponentInChildren<Text>().text = c[ClauseNumber]+ "Kg \n $" + ls[ClauseNumber];
-
 
 		//Gets the subcomponents of the Clause, locating each button
 		GameObject Button = instance.transform.Find("Button").gameObject;
@@ -215,7 +170,6 @@ public class BoardManager : MonoBehaviour {
 		GameObject Button2 = instance.transform.Find("Button2").gameObject;
 
 		//Button
-		//Gumb gumbs[ItemNumber+0] = new Gumb();
 		gumbs [ItemNumber].gvariable = v [ItemNumber];
 		gumbs [ItemNumber].gliteral = ls[ItemNumber];
 		gumbs [ItemNumber].gstate = 0;
@@ -224,7 +178,6 @@ public class BoardManager : MonoBehaviour {
 		gumbs [ItemNumber].ColourGumb = Button.GetComponent<SpriteRenderer>();
 
 		//Button1
-		//Gumb gumbs[ItemNumber+1] = new Gumb();
 		gumbs [ItemNumber+1].gvariable = v [ItemNumber+1];
 		gumbs [ItemNumber+1].gliteral = ls[ItemNumber+1];
 		gumbs [ItemNumber+1].gstate = 0;
@@ -233,18 +186,12 @@ public class BoardManager : MonoBehaviour {
 		gumbs [ItemNumber+1].ColourGumb = Button1.GetComponent<SpriteRenderer>();
 
 		//Button2
-		//Gumb gumbs[ItemNumber+2] = new Gumb();
 		gumbs [ItemNumber+2].gvariable = v [ItemNumber+2];
 		gumbs [ItemNumber+2].gliteral = ls[ItemNumber+2];
 		gumbs [ItemNumber+2].gstate = 0;
 		gumbs [ItemNumber+2].gitemnumber = ItemNumber+2;
 		gumbs [ItemNumber+2].InterfaceGumb = Button2.GetComponent<Button>();
 		gumbs [ItemNumber+2].ColourGumb = Button2.GetComponent<SpriteRenderer>();
-
-//		gumbs[ItemNumber].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[ItemNumber]);});
-//		gumbs[ItemNumber+1].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[ItemNumber+1]);});
-//		gumbs[ItemNumber+2].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[ItemNumber+2]);});
-
 
 		string lit;
 
@@ -256,15 +203,6 @@ public class BoardManager : MonoBehaviour {
 		}
 		Button.GetComponentInChildren<Text>().text = "" + lit + v[ItemNumber];
 
-		//		//ButtonNumber.length is a multiple of 3. If we divide its length into sets of 3 elements each, this populates the first element of each set with 0
-		//		ButtonNumber[ItemNumber] = 0;
-		//
-		//		//ClauseNumber.length is a multiple of 3. If we divide its length into sets of 3 elements each, this populates the first element of each set
-		//		//with the element of the literal divided by the literals per clause. 
-		//		ClauseNumber[ItemNumber] = (int)ItemNumber/literalsPerClause;
-
-		//		V[j].Add(new Vector3 (Clauses[i],ButtonNumber[ItemNumber],ls[ItemNumber]));
-
 		//Sets the Text of the second button
 		if (ls [ItemNumber+1] == 0) {
 			lit = "-";
@@ -273,13 +211,6 @@ public class BoardManager : MonoBehaviour {
 		}
 		Button1.GetComponentInChildren<Text>().text = "" + lit + v[ItemNumber+1];
 
-		//		//This populates the second element of each set in ButtonNumber with 1
-		//		ButtonNumber[ItemNumber+1] = 1;
-		//
-		//		//ensures the second element of each set in ClauseNumber is equal to the first element 
-		//		ClauseNumber[ItemNumber+1] = ClauseNumber[ItemNumber];
-		//
-		////		V.Add(Clauses[i],ButtonNumber[ItemNumber+1],ls[ItemNumber+1]);
 
 		//Sets the Text of the third button
 		if (ls [ItemNumber+2] == 0) {
@@ -289,22 +220,10 @@ public class BoardManager : MonoBehaviour {
 		}
 		Button2.GetComponentInChildren<Text>().text = "" + lit + v[ItemNumber+2];
 
-		//		//This populates the third element of each set in ButtonNumber with 2
-		//		ButtonNumber[ItemNumber+2] = 2;
-		//
-		//		//ensures the third element of each set in ClauseNumber is equal to the first and second elements 
-		//		ClauseNumber[ItemNumber+2] = ClauseNumber[ItemNumber];
-		//
-		////		V.Add(Clauses[i],ButtonNumber[ItemNumber+2],ls[ItemNumber+2]);
 
 
 		Clause ClauseInstance = new Clause();
 		ClauseInstance.gameClause=instance;
-		//		ClauseInstance.coordValue1=new Vector2(-valueW*(1+scale1)/2,0);
-		//		ClauseInstance.coordValue2=new Vector2(valueW*(1+scale1)/2,valueH*(1+scale1));
-		//		ClauseInstance.coordWeight1=new Vector2(-weightW*(1+scale2)/2,0);
-		//		ClauseInstance.coordWeight2=new Vector2(weightW*(1+scale2)/2,-weightH*(1+scale2));
-
 
 		//Goes from 1 to numberOfClauses
 		//note: not sure what this is being used for, so check that's it's ok before using it elsewhere
@@ -326,7 +245,6 @@ public class BoardManager : MonoBehaviour {
 		gumbs[clauseNumber+1].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber+1]);});
 		gumbs[clauseNumber+2].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber+2]);});
 
-		//ClickDetect (gumbs [clauseNumber]);
 	}
 
 
@@ -349,7 +267,7 @@ public class BoardManager : MonoBehaviour {
 	//	}
 	//	}
 
-	// Places all the objects from the instance (v,ls) on the canvas. 
+	// Places all the objects from the instance (v,ls) on the canvas.
 	// Returns TRUE if all Clauses where positioned, FALSE otherwise.
 	private bool LayoutObjectAtRandom()
 	{
@@ -364,27 +282,10 @@ public class BoardManager : MonoBehaviour {
 			placeClause (ClauseToLocate, randomPosition,i);
 			ClauseToLocate.center = new Vector2(randomPosition.x,randomPosition.y);
 			Clauses [i] = ClauseToLocate;
-				
-//			while (objectPositioned == 0) 
-//			{
-//				if (gridPositions.Count > 0) 
-//				{
-//					Vector3 randomPosition = RandomPosition ();
-//					placeClause (ClauseToLocate, randomPosition);
-//					ClauseToLocate.center = new Vector2(randomPosition.x,randomPosition.y);
-//					Clauses [i] = ClauseToLocate;
-//					objectPositioned = 1;
-//				}
-//				else
-//				{
-//					//Debug.Log ("Not enough space to place all Clauses");
-//					return false;
-//				}
-//			}
 
 		}
 
-		//call a function which creates a vector for every variable, where that vector contains four pieces of information. it contains an element for every instance of that 
+		//call a function which creates a vector for every variable, where that vector contains four pieces of information. it contains an element for every instance of that
 		//variable in the input, and each element has 3 components. 1: which clause it is in, 2: which button it is in, 3: whether the literal is positive or negative
 		//CreateVectors();
 
@@ -394,31 +295,18 @@ public class BoardManager : MonoBehaviour {
 	/// Macro function that initializes the Board
 	public void SetupScene(string sceneToSetup)
 	{
-		if (sceneToSetup == "Trial") 
+		if (sceneToSetup == "Trial")
 		{
 			itemClicks.Clear ();
 			clickNumber = 1;
-			//InitialiseList();
-			setSATInstance ();
-			//If the bool returned by LayoutObjectAtRandom() is false, then retry again:
-			//Destroy all Clauses. Initialize list again and try to place them once more.
 
-			//			bool ClausesPlaced = false;
-			//				GameObject[] Clauses1 = GameObject.FindGameObjectsWithTag("Clause");
-			//				foreach (GameObject Clause in Clauses1)
-			//				{
-			//					Destroy(Clause);
-			//				}
+			setSATInstance ();
 
 			InitialiseList ();
-			//			ClauseClicks.Clear ();
 			//seeGrid();
-			//		ClausesPlaced = 
+
 			LayoutObjectAtRandom ();
-			//		if (ClausesPlaced == false) 
-			//		{
-			//			GameManager.errorInScene ("Not enough space to place all Clauses");
-			//		}
+
 			keysON = true;
 
 		} else if(sceneToSetup == "TrialAnswer")
@@ -440,7 +328,7 @@ public class BoardManager : MonoBehaviour {
 	{
 		// timer = GameObject.Find ("Timer").GetComponent<RectTransform> ();
 		// timer.sizeDelta = new Vector2 (timerWidth * (GameManager.tiempo / GameManager.totalTime), timer.rect.height);
-		if (GameManager.escena != "SetUp" || GameManager.escena == "InterTrialRest" || GameManager.escena == "End") 
+		if (GameManager.escena != "SetUp" || GameManager.escena == "InterTrialRest" || GameManager.escena == "End")
 		{
 			Image timer = GameObject.Find ("Timer").GetComponent<Image> ();
 			timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
@@ -449,7 +337,7 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	//Sets the triggers for pressing the corresponding keys
-	//123: Perhaps a good practice thing to do would be to create a "close scene" function that takes as parameter the answer and closes everything (including keysON=false) and then forwards to 
+	//123: Perhaps a good practice thing to do would be to create a "close scene" function that takes as parameter the answer and closes everything (including keysON=false) and then forwards to
 	//changeToNextScene(answer) on game manager
 	//necessary: this was imported from decision version
 	private void setKeyInput(){
@@ -457,57 +345,53 @@ public class BoardManager : MonoBehaviour {
 		if (GameManager.escena == "Trial") {
 			if (Input.GetKeyDown (KeyCode.UpArrow)) {
 				GameManager.saveTimeStamp ("ParticipantSkip");
-				GameManager.changeToNextScene (itemClicks,0,0);
+				GameManager.changeToNextScene (itemClicks,0,0,1);
 			}
 		}
-		else if (GameManager.escena == "TrialAnswer") 
+		else if (GameManager.escena == "TrialAnswer")
 		{
 			//1: No/Yes 0: Yes/No
 			if (randomYes == 1) {
 				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 					//Left
-					//GameManager.changeToNextScene (0, randomYes);
 					keysON = false;
 					answer=0;
 					GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
 					highlightButton(boto);
-					GameManager.changeToNextScene (itemClicks,0,1);
-				} 
+					GameManager.changeToNextScene (itemClicks,0,1,0);
+				}
 				else if (Input.GetKeyDown (KeyCode.RightArrow)) {
 					//Right
-					//GameManager.changeToNextScene (1, randomYes);
 					keysON = false;
 					answer=1;
 					GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
 					highlightButton(boto);
-					GameManager.changeToNextScene (itemClicks,1,1);
+					GameManager.changeToNextScene (itemClicks,1,1,0);
 				}
-			} 
+			}
 			else if (randomYes == 0) {
 				if (Input.GetKeyDown (KeyCode.LeftArrow)) {
 					//Left
-					//GameManager.changeToNextScene (1, randomYes);
 					keysON = false;
 					answer=1;
 					GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
 					highlightButton(boto);
-					GameManager.changeToNextScene (itemClicks,1,0);
-				} 
+					GameManager.changeToNextScene (itemClicks,1,0,0);
+				}
 				else if (Input.GetKeyDown (KeyCode.RightArrow)) {
 					//Right
-					//GameManager.changeToNextScene (0, randomYes);
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
 					highlightButton(boto);
-					GameManager.changeToNextScene (itemClicks,0,0);
+					GameManager.changeToNextScene (itemClicks,0,0,0);
 				}
 			}
-		} 
+		}
 		else if (GameManager.escena == "SetUp") {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				GameManager.setTimeStamp ();
-				GameManager.changeToNextScene (itemClicks,0,0);
+				GameManager.changeToNextScene (itemClicks,0,0,0);
 			}
 		}
 	}
@@ -520,7 +404,7 @@ public class BoardManager : MonoBehaviour {
 
 	public void setupInitialScreen()
 	{
-		//Button 
+		//Button
 		Debug.Log("Start button");
 		GameObject start = GameObject.Find("Start") as GameObject;
 		start.SetActive (false);
@@ -542,11 +426,9 @@ public class BoardManager : MonoBehaviour {
 		InputField rID = rand.GetComponent<InputField>();
 
 		InputField.SubmitEvent se2 = new InputField.SubmitEvent();
-		//se.AddListener(submitPID(start));
 		se2.AddListener((value)=>submitRandID(value,start));
 		rID.onEndEdit = se2;
 
-		//pID.onSubmit.AddListener((value) => submitPID(value));
 
 	}
 
@@ -563,13 +445,6 @@ public class BoardManager : MonoBehaviour {
 
 		//Activate Randomisation Listener
 		rand.SetActive (true);
-
-
-
-		//Activate Start Button and listener
-		//GameObject start = GameObject.Find("Start");
-		//start.SetActive (true);
-		//keysON = true;
 
 	}
 
@@ -607,17 +482,15 @@ public class BoardManager : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () 
+	void Start ()
 	{
-//		spriteRenderer = Gumbo.InterfaceGumb.GetComponent<SpriteRenderer>(); // we are accessing the SpriteRenderer that is attached to the Gameobject
-//		if (spriteRenderer.sprite == null) // if the sprite on spriteRenderer is null then
-//			spriteRenderer.sprite = whitesprite; // set the sprite to sprite1
+		
 	}
 
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
-		if (keysON) 
+		if (keysON)
 		{
 			setKeyInput ();
 		}
@@ -626,8 +499,8 @@ public class BoardManager : MonoBehaviour {
 
 	// The list of all the button clicks on items. Each event contains the following information:
 	// ItemNumber (a number between 1 and the number of items. It corresponds to the index in the weight's (and value's) vector.)
-	// Item is being selected In/Out (1/0) 
-	// Time of the click with respect to the beginning of the trial 
+	// Item is being selected In/Out (1/0)
+	// Time of the click with respect to the beginning of the trial
 	//public static List <Vector4> itemClicks =  new List<Vector4> ();
 
 	public struct itemClick
@@ -655,7 +528,7 @@ public class BoardManager : MonoBehaviour {
 			itemClick itemClick1 = new itemClick ();
 
 			Gumb newGumb = gumbs [Gumbo.gitemnumber];
-		
+
 			itemClick1.clickNumber = clickNumber;
 			itemClick1.gvariable = newGumb.gvariable;
 			itemClick1.gliteral = newGumb.gliteral;
@@ -702,11 +575,8 @@ public class BoardManager : MonoBehaviour {
 		}
 
 //		Debug.Log ("State change");
-//		Debug.Log (oldstates[Gumbo.gitemnumber]);
-//		Debug.Log(newstates[Gumbo.gitemnumber]);
-		//66
 		ChangeColour (oldstates, newstates);
-//		setElementSelectionButtons ();
+
 	}
 
 	//the sprites for each button
@@ -714,18 +584,16 @@ public class BoardManager : MonoBehaviour {
 	public Sprite bluesprite;
 	public Sprite orangesprite;
 
-//	private SpriteRenderer spriteRenderer; 
-
 
 	private void ChangeColour (int[] oldstates, int[] newstates)
 	{
 
 		for (int i = 0; i < gumbs.Length; i++) {
 			if (oldstates [i] != newstates [i]) {
-				if (gumbs [i].gstate == 1) { 
+				if (gumbs [i].gstate == 1) {
 					gumbs[i].ColourGumb.sprite = bluesprite;
 				} else if (gumbs [i].gstate == 2) {
-					gumbs[i].ColourGumb.sprite = orangesprite; 
+					gumbs[i].ColourGumb.sprite = orangesprite;
 				} else {
 					gumbs[i].ColourGumb.sprite = whitesprite;
 				}
@@ -734,23 +602,8 @@ public class BoardManager : MonoBehaviour {
 
 	}
 
-//	/// <summary>
-//	/// The action to be taken when a button is pressed: Toggles the light and adds the click to itemClicks
-//	/// </summary>
-//	/// <param name="itemToLocate"> item clicked </param>
-//	private void setElementSelectionButtons(){
-//
-//		int itemN = Clauses.ItemNumber;
-//
-//		Light myLight = Clauses.gameClause.GetComponent<Light> ();
-//		myLight.enabled = !myLight.enabled;
-//
-//		int itemIn=(myLight.enabled)? 1 : 0 ;
-//	}
-//
 
 
-	//necessary?
 	//Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.
 	//1: No/Yes 0: Yes/No
 	void RandomizeButtons()
@@ -760,13 +613,12 @@ public class BoardManager : MonoBehaviour {
 
 		randomYes=GameManager.buttonRandomization[GameManager.trial-1];
 
-		if (randomYes == 1) 
+		if (randomYes == 1)
 		{
 			btnLeft.GetComponentInChildren<Text>().text = "No";
 			btnRight.GetComponentInChildren<Text>().text = "Yes";
-			//btnLeft.onClick.AddListener(()=>GameManager.changeToNextScene(0));
-		} 
-		else 
+		}
+		else
 		{
 			btnLeft.GetComponentInChildren<Text>().text = "Yes";
 			btnRight.GetComponentInChildren<Text>().text = "No";
@@ -774,46 +626,4 @@ public class BoardManager : MonoBehaviour {
 	}
 
 
-	//	//Checks if positioning an Clause in the new position generates an overlap. Assuming the new Clause has a radius of KSClauseRadius.
-	//	//Returns: TRUE if there is an overlap. FALSE Otherwise.
-	//	bool objectOverlapsQ(Vector3 pos)
-	//	{
-	//		//If physics could be started before update we could use the following easier function:
-	//		//bool overlap = Physics2D.IsTouchingLayers(newObject.GetComponent<Collider2D>());
-	//
-	//		bool overlap = Physics2D.OverlapCircle(pos,KSClauseRadius);
-	//		return overlap;
-	//
-	//	}
-
-	//Checks if positioning an Clause in the new position generates an overlap.
-	//Returns: TRUE if there is an overlap. FALSE Otherwise.
-	//	bool objectOverlapsQ(Vector3 pos, Clause Clause)
-	//	{
-	//		Vector2 posxy = new Vector3 (pos.x, pos.y);
-	//		bool overlapValue = Physics2D.OverlapArea (Clause.coordValue1+posxy, Clause.coordValue2+posxy);
-	//		bool overlapWeight = Physics2D.OverlapArea (Clause.coordWeight1+posxy, Clause.coordWeight2+posxy);
-
-	//Debug.Log ("Clause");
-	//Debug.Log(Clause.coordValue1 + posxy);
-	//Debug.Log(Clause.coordValue2+posxy);
-	//		return overlapValue || overlapWeight;
-	//return false;
-	//	}
-
-
-	//necessary: this is what we had from the optimization
-	//	private void setKeyInput(){
-	//		if (GameManager.escena == "Trial") {
-	//			if (Input.GetKeyDown (KeyCode.D)) {
-	//				GameManager.changeToNextScene (answer, 1);
-	//			} 
-	//		} else if (GameManager.escena == "SetUp") {
-	//			if (Input.GetKeyDown (KeyCode.D)) {
-	//				GameManager.setTimeStamp ();
-	//
-	//			GameManager.changeToNextScene (0,0);
-	//		}
-	//	}
-	//}
 }
