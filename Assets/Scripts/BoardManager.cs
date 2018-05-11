@@ -39,16 +39,16 @@ public class BoardManager : MonoBehaviour {
 
 	//an array where each element takes the value of 0, 1 or 2. an element takes the value of 0 if the literal which has just been added to a clause
 	//is on the first button, 1 if the literal is placed on the second button and 2 if the literal is placed on the third button
-	private int [] ButtonNumber;
+	//private int [] ButtonNumber;
 
 	//an array where each element represents which clause a literal has just been added into. thus, the first 3 elements will be equal to 0, the next 3 elements
 	//will be equal to 1, the next 3 elements will be equal to 2 and so on until every literal has been allocated to a clause
-	private int [] ClauseNumber;
+	//private int [] ClauseNumber;
 
 	//an array where each element represents the state/colour of a corresponding button. the default state takes a value of 0 and corresponds to the colour yellow.
 	//if a variable is clicked, all of the corresponding variable/literal pairs will be equal to 1 and the colour will be blue. all of the corresponding variables
 	//and opposing literals will be equal to 2 and their colour will be red
-	private int [] State;
+	//private int [] State;
 
 	//The answer Input by the player
 	//0:No / 1:Yes / 2:None
@@ -74,12 +74,16 @@ public class BoardManager : MonoBehaviour {
 	//coordWeight1 and coordWeight2: Same as before but for the weight part of the Clause.
 	//botncitoW: button attached to the weight
 	//botncitoV: button attached to the Value (Bill)
-	//ItemNumber: a number between 1 and the number of Clauses. It corresponds to the index in the weight's (and value's) vector.
+	//ItemNumber: a number between 1 and the number of Clauses. It corresponds to the index in the weight's (and value's) vector from the input file.
 	private struct Clause
 	{
 		public GameObject gameClause;
 		public Vector2 center;
 		public int ItemNumber;
+
+		public bool lightOn;
+
+		public SpriteRenderer lightBulb;
 	}
 
 	private struct Gumb
@@ -97,6 +101,38 @@ public class BoardManager : MonoBehaviour {
 	private static Clause[] Clauses;
 
 	private Gumb[] gumbs;
+
+
+
+	// The list of all the button clicks on items. Each event contains the following information:
+	// ItemNumber (a number between 1 and the number of items. It corresponds to the index in the weight's (and value's) vector.)
+	// Item is being selected In/Out (1/0)
+	// Time of the click with respect to the beginning of the trial
+	//public static List <Vector4> itemClicks =  new List<Vector4> ();
+
+	public struct itemClick
+	{
+		public int clickNumber;
+		public int gvariable;
+		public int gliteral;
+		public int state;
+		public float time;
+	}
+
+	//The Clauses for the scene are stored here.
+	public static List <itemClick> itemClicks = new List<itemClick>();
+
+	//The sprites for each button
+	public Sprite whitesprite;
+	public Sprite bluesprite;
+	public Sprite orangesprite;
+
+
+	public Sprite lightOffSprite;
+	public Sprite lightOnSprite;
+
+
+
 
 	//This Initializes the GridPositions which are the possible places where the Clauses will be placed.
 	void InitialiseList ()
@@ -144,7 +180,7 @@ public class BoardManager : MonoBehaviour {
 		ls = GameManager.satinstances [randInstance].literals;
 		gumbs = new Gumb[v.Length];
 
-		SATClausePrefab = (GameObject)Resources.Load ("SATClause");
+		SATClausePrefab = (GameObject)Resources.Load ("SATClause2");
 
 	}
 
@@ -153,8 +189,10 @@ public class BoardManager : MonoBehaviour {
 	/// </summary>
 	/// <returns>The Clause structure</returns>
 	/// The Clause placing here is temporary; The real placing is done by the placeClause() method.
-	Clause generateClause(int ItemNumber ,Vector3 randomPosition)
+	Clause generateClause(int clauseNumber ,Vector3 randomPosition)
 	{
+
+		int ItemNumber = clauseNumber*3;
 		//Instantiates the Clause and places it.
 		GameObject instance = Instantiate (SATClausePrefab, randomPosition, Quaternion.identity) as GameObject;
 
@@ -224,10 +262,17 @@ public class BoardManager : MonoBehaviour {
 
 		Clause ClauseInstance = new Clause();
 		ClauseInstance.gameClause=instance;
+		ClauseInstance.lightOn = false;
+		GameObject Bulb = instance.transform.Find ("LightBulb").gameObject;
+			//.GetComponent<SpriteRenderer>();
+			//GetComponent<SpriteRenderer>().sprite = (on) ? lightOnSprite : lightOffSprite;
+			//instance.transform.Find("LightBulb").gameObject;
+		ClauseInstance.lightBulb = Bulb.GetComponent<SpriteRenderer>();
+
 
 		//Goes from 1 to numberOfClauses
 		//note: not sure what this is being used for, so check that's it's ok before using it elsewhere
-		ClauseInstance.ItemNumber = ItemNumber+1;
+		ClauseInstance.ItemNumber = clauseNumber+1;
 
 		return(ClauseInstance);
 
@@ -241,9 +286,9 @@ public class BoardManager : MonoBehaviour {
 		//Setting the position in a separate line is importatant in order to set it according to global coordinates.
 		ClauseToLocate.gameClause.transform.position = position;
 
-		gumbs[clauseNumber].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber]);});
-		gumbs[clauseNumber+1].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber+1]);});
-		gumbs[clauseNumber+2].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber+2]);});
+		gumbs[clauseNumber*3].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber*3]);});
+		gumbs[clauseNumber*3+1].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber*3+1]);});
+		gumbs[clauseNumber*3+2].InterfaceGumb.onClick.AddListener(delegate{ClickDetect(gumbs[clauseNumber*3+2]);});
 
 	}
 
@@ -272,9 +317,10 @@ public class BoardManager : MonoBehaviour {
 	private bool LayoutObjectAtRandom()
 	{
 		int objectCount =v.Length;
+		int nClauses = (int)objectCount / 3;
 		//note: not sure what "Clauses" is being used for, so check that's it's ok before using it elsewhere
-		Clauses= new Clause[objectCount];
-		for(int i=0; i < objectCount;i=i+3)
+		Clauses= new Clause[nClauses];
+		for(int i=0; i < nClauses;i=i+1)
 		{
 			Clause ClauseToLocate = generateClause (i, new Vector3 (-1000,-1000,-1000));//66: Change to different Layer?
 
@@ -497,24 +543,6 @@ public class BoardManager : MonoBehaviour {
 
 	}
 
-	// The list of all the button clicks on items. Each event contains the following information:
-	// ItemNumber (a number between 1 and the number of items. It corresponds to the index in the weight's (and value's) vector.)
-	// Item is being selected In/Out (1/0)
-	// Time of the click with respect to the beginning of the trial
-	//public static List <Vector4> itemClicks =  new List<Vector4> ();
-
-	public struct itemClick
-	{
-		public int clickNumber;
-		public int gvariable;
-		public int gliteral;
-		public int state;
-		public float time;
-	}
-
-	//The Clauses for the scene are stored here.
-	public static List <itemClick> itemClicks = new List<itemClick>();
-
 
 	//public static itemClicks[] =  new List<Vector4> ();
 
@@ -544,7 +572,8 @@ public class BoardManager : MonoBehaviour {
 
 	private void ChangeState(Gumb Gumbo)
 	{
-
+		//States:
+		//0=Unselected, 1=Blue, 2=Orange 
 		int[] oldstates = new int[gumbs.Length];
 		//Populate states with loop
 		int[] newstates = new int[gumbs.Length];
@@ -577,12 +606,9 @@ public class BoardManager : MonoBehaviour {
 //		Debug.Log ("State change");
 		ChangeColour (oldstates, newstates);
 
-	}
+		changeBulbs (newstates); 
 
-	//the sprites for each button
-	public Sprite whitesprite;
-	public Sprite bluesprite;
-	public Sprite orangesprite;
+	}
 
 
 	private void ChangeColour (int[] oldstates, int[] newstates)
@@ -601,7 +627,6 @@ public class BoardManager : MonoBehaviour {
 		}
 
 	}
-
 
 
 	//Randomizes YES/NO button positions (left or right) and allocates corresponding script to save the correspondent answer.
@@ -623,6 +648,37 @@ public class BoardManager : MonoBehaviour {
 			btnLeft.GetComponentInChildren<Text>().text = "Yes";
 			btnRight.GetComponentInChildren<Text>().text = "No";
 		}
+	}
+
+
+	private void changeBulbs (int[] newstates)
+	{
+		int nClauses = Clauses.Length;
+		//int nLit = Clauses.Length;
+
+
+		for (int i = 0; i < nClauses; i++) {
+			if (newstates [i*3] == 1 || newstates [i*3+1] == 1 || newstates [i*3+2] == 1) {
+				toggleLightBulb (Clauses [i], true);
+			} else {
+				toggleLightBulb (Clauses [i], false);
+			}
+		}
+
+	}
+
+	private void toggleLightBulb(Clause cl, bool on)
+	{
+		//cl.lightOn= (cl.lightOn) ? false : true;
+		//66. Add change of sprite
+		cl.lightOn=on;
+		Debug.Log("Clause");
+		Debug.Log(cl.ItemNumber);
+		Debug.Log(on);
+		cl.lightBulb.sprite = (on) ? lightOnSprite : lightOffSprite;
+		//cl.gameClause.transform.Find ("LightBulb");
+		//cl.gameClause.transform.Find("LightBulb").GetComponent<SpriteRenderer>().sprite = (on) ? lightOnSprite : lightOffSprite;
+
 	}
 
 
