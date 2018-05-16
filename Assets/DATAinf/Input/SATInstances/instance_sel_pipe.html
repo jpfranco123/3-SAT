@@ -120,7 +120,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">3SAT Instance Selection</h1>
 <h4 class="author"><em>Pablo Franco</em></h4>
-<h4 class="date"><em>07 May, 2018</em></h4>
+<h4 class="date"><em>16 May, 2018</em></h4>
 
 </div>
 
@@ -217,11 +217,13 @@ print(&quot;This is the ratio closest to having a solvability probability of 0.5
 <pre class="r"><code>#MMANUALLY: Define the ratios basesd on previous phase transition chunk.
 
 inPT_ratio=pt_loc$ratio
-underPT_ratio=2.8
+#underPT_ratio=2.8
+underPT_ratio=3.6
 overPT_ratio=7
 
 inPT_problem_id=&quot;4.8&quot;
-underPT_problem_id=&quot;2.857&quot;
+#underPT_problem_id=&quot;2.857&quot;
+underPT_problem_id=&quot;3.607&quot;
 overPT_problem_id=&quot;7.036&quot;</code></pre>
 <div id="convert-files-with-the-relevant-ratios-to-the-task-input-from-dimacs-format-to-game-format" class="section level2">
 <h2>Convert files with the relevant ratios to the Task input (from Dimacs format to game format)</h2>
@@ -254,7 +256,7 @@ solutions = dg.get_solution(ratio_global,problemID,fileIn_solverE)
 dg.convert(problemID,ratio_global,dimacs_dir,folderOut_all,solutions)
 #ratio_global = 4.8
 #problemID='4.8'</code></pre>
-<pre><code>## Transforming format of 1000 instances with a ratio of 2.8 and the following problem id: 2.857</code></pre>
+<pre><code>## Transforming format of 1000 instances with a ratio of 3.6 and the following problem id: 3.607</code></pre>
 <pre class="python"><code>ratio_global = r.inPT_ratio
 problemID=r.inPT_problem_id
 dimacs_dir = folderIn_solverP + str(problemID) + &quot;/&quot;
@@ -265,10 +267,10 @@ dg.convert(problemID,ratio_global,dimacs_dir,folderOut_all,solutions)</code></pr
 <div id="sample-from-generated-files" class="section level2">
 <h2>Sample from generated files</h2>
 <pre class="r"><code>seed=5
-outPT_nSamples=8
+outPT_nSamples=12
 inPT_nSamples=outPT_nSamples
 source(&quot;3SAT_instance_sel.R&quot;)</code></pre>
-<pre><code>## [1] &quot;16 Instances were sampled.&quot;</code></pre>
+<pre><code>## [1] &quot;24 Instances were sampled.&quot;</code></pre>
 </div>
 <div id="generate-instance-order-for-task-input-i.e.param2.txt-file-for-game" class="section level2">
 <h2>Generate instance order for task input (i.e. param2.txt file for game)</h2>
@@ -284,7 +286,7 @@ folderOut_sub=r.folderOut_sub
 nOrderRandomizationsMin=1#0#1
 nOrderRandomizations=50
 tN=8
-bN=2
+bN=3
 nTypes=6
 binFactor=8 # = sum(sampleSizePerBin) when sizePerBin=1
 nInstances=tN*bN

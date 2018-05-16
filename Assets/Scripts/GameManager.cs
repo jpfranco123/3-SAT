@@ -107,11 +107,14 @@ public class GameManager : MonoBehaviour
 
 		public int nvariables;
 		public int nliterals;
+		public int nclauses;
 
 		public string id;
 		public string type;
 
 		public int solution;
+
+		public float ratio;
 	}
 
 	//An array of all the instances to be uploaded from .txt files, i.e importing everything using the structure from above
@@ -269,7 +272,7 @@ public class GameManager : MonoBehaviour
 		string[] lines3 = new string[numberOfInstances+2];
 		//the first two lines will show the following - "string": "parameter/input"
 		lines3[0]="PartcipantID:" + participantID;
-		lines3 [1] = "instanceNumber" + ";v" + ";l" + ";id" + ";type" + ";sol";
+		lines3 [1] = "instanceNumber" + ";v" + ";l" + ";id" + ";type" + ";sol" + ";nVariables" + ";nLiterals" + ";nClauses" + ";ratio";
 
 		int l = 2;
 		int satn = 1;
@@ -279,7 +282,7 @@ public class GameManager : MonoBehaviour
 			//lines [l] = "Instance:" + satn + ";c=" + sat.capacity + ";p=" + sat.profit + ";w=" + string.Join (",", sat.variables.Select (p => p.ToString ()).ToArray ()) + ";v=" + string.Join (",", sat.literals.Select (p => p.ToString ()).ToArray ());
 			//With instance type and problem ID
 			lines3 [l] = satn + ";" + string.Join (",", sat.variables.Select (p => p.ToString ()).ToArray ()) + ";" + string.Join (",", sat.literals.Select (p => p.ToString ()).ToArray ())
-				+ ";" + sat.id + ";" + sat.type + ";" + sat.solution;
+				+ ";" + sat.id + ";" + sat.type + ";" + sat.solution + ";" + sat.nvariables + ";" + sat.nliterals  + ";" + sat.nclauses + ";" + sat.ratio;
 
 			l++;
 			satn++;
@@ -464,6 +467,8 @@ public class GameManager : MonoBehaviour
 			string nvariablesS;
 			string nliteralsS;
 			string solutionS;
+			string nclausesS;
+			string ratioS;
 
 
 			//grab all of those parameters as strings
@@ -472,6 +477,8 @@ public class GameManager : MonoBehaviour
 			dict.TryGetValue ("nvariables", out nvariablesS);
 			dict.TryGetValue ("nliterals", out nliteralsS);
 			dict.TryGetValue ("solution", out solutionS);
+			dict.TryGetValue ("nclauses", out nclausesS);
+			dict.TryGetValue ("ratio", out ratioS);
 
 
 			//convert (most of them) to integers, with variables and literals being arrays and the others single literals
@@ -480,9 +487,11 @@ public class GameManager : MonoBehaviour
 			satinstances [k-1].nvariables = int.Parse (nvariablesS);
 			satinstances [k-1].nliterals = int.Parse (nliteralsS);
 			satinstances [k-1].solution = int.Parse (solutionS);
+			satinstances [k-1].nclauses = int.Parse (nclausesS);
+			satinstances [k-1].ratio = float.Parse (ratioS);
 
-			dict.TryGetValue ("problemID", out satinstances [k - 1].id);
-			dict.TryGetValue ("ratio", out satinstances [k - 1].type);
+			dict.TryGetValue ("problemId", out satinstances [k - 1].id);
+			dict.TryGetValue ("type", out satinstances [k - 1].type);
 		}
 	}
 

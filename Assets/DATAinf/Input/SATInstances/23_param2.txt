@@ -1,4 +1,4 @@
 numberOfTrials:8
-numberOfBlocks:2
-numberOfInstances:16
-instanceRandomization:[8,6,2,14,10,16,12,4,7,5,1,15,11,13,9,3]
+numberOfBlocks:3
+numberOfInstances:24
+instanceRandomization:[11,8,2,22,16,21,15,5,12,9,3,24,18,23,17,6,10,7,1,20,14,19,13,4]
