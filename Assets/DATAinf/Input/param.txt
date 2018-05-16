@@ -1,5 +1,5 @@
 timeRest1:3
 timeRest2:60
-timeQuestion:30
+timeQuestion:110
 timeAnswer:3
-maxClicks:5
+maxClicks:20

@@ -36,6 +36,8 @@ public class BoardManager : MonoBehaviour {
 	private int[] v;
 	private int[] ls;
 
+	//Counter
+	public Text ClickText;
 
 	//an array where each element takes the value of 0, 1 or 2. an element takes the value of 0 if the literal which has just been added to a clause
 	//is on the first button, 1 if the literal is placed on the second button and 2 if the literal is placed on the third button
@@ -181,6 +183,7 @@ public class BoardManager : MonoBehaviour {
 		gumbs = new Gumb[v.Length];
 
 		SATClausePrefab = (GameObject)Resources.Load ("SATClause2");
+		ClickText = GameObject.Find ("ClickText").GetComponent<Text>();
 
 	}
 
@@ -264,9 +267,9 @@ public class BoardManager : MonoBehaviour {
 		ClauseInstance.gameClause=instance;
 		ClauseInstance.lightOn = false;
 		GameObject Bulb = instance.transform.Find ("LightBulb").gameObject;
-			//.GetComponent<SpriteRenderer>();
-			//GetComponent<SpriteRenderer>().sprite = (on) ? lightOnSprite : lightOffSprite;
-			//instance.transform.Find("LightBulb").gameObject;
+		//.GetComponent<SpriteRenderer>();
+		//GetComponent<SpriteRenderer>().sprite = (on) ? lightOnSprite : lightOffSprite;
+		//instance.transform.Find("LightBulb").gameObject;
 		ClauseInstance.lightBulb = Bulb.GetComponent<SpriteRenderer>();
 
 
@@ -344,6 +347,7 @@ public class BoardManager : MonoBehaviour {
 		if (sceneToSetup == "Trial")
 		{
 			itemClicks.Clear ();
+
 			clickNumber = 1;
 
 			setSATInstance ();
@@ -358,7 +362,6 @@ public class BoardManager : MonoBehaviour {
 		} else if(sceneToSetup == "TrialAnswer")
 		{
 			answer = 2;
-			setSATInstance ();
 			//setQuestion ();
 			RandomizeButtons ();
 			keysON = true;
@@ -530,7 +533,7 @@ public class BoardManager : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		
+
 	}
 
 	// Update is called once per frame
@@ -565,9 +568,15 @@ public class BoardManager : MonoBehaviour {
 
 			//itemClicks.Add (new Vector4 (clickNumber,Gumbo.gvariable,Gumbo.gliteral,GameManager.timeQuestion - GameManager.tiempo));
 			itemClicks.Add (itemClick1);
-
+			SetClickText();
 			clickNumber = clickNumber + 1;
 		}
+	}
+
+	void SetClickText ()
+	{
+		Debug.Log ("SetClickText");
+		ClickText.text = "Remaining Clicks: " + (GameManager.maxClicks-clickNumber);
 	}
 
 	private void ChangeState(Gumb Gumbo)
@@ -603,7 +612,7 @@ public class BoardManager : MonoBehaviour {
 			gumbs [i].gstate = newstates [i];
 		}
 
-//		Debug.Log ("State change");
+		//		Debug.Log ("State change");
 		ChangeColour (oldstates, newstates);
 
 		changeBulbs (newstates); 
