@@ -1,4 +1,4 @@
-# 3-SAT (Boolean satisfiability) behavioural task on unity(C#).
+# 3-SAT (Boolean satisfiability) behavioural task in unity(C#).
 
 This task is based on the 3-satisfiability problem (3SAT). In this problem, the aim is to determine whether a boolean formula is satisfiable. In other words, given a propositional formula, the aim is to determine whether there exists at least one configuration of the variables (which can take values TRUE or FALSE) such that the formula evaluates to TRUE. The propositional formula in 3SAT has a specific structure. Specifically, the formula is composed of a conjunction of clauses that must all evaluate TRUE for the whole formula to evaluate TRUE. Each of these clauses, takes the form of an OR logical operator of three literals (variables and their negations).
 
