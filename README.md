@@ -6,6 +6,8 @@ In order to represent this in an accessible way to participants we developed a t
 
 Each trial presents a different instance of SAT. At the beginning of each trial, participants are presented with a different instance of the 3SAT problem. A bar in the top-right corner of the screen indicated the time remaining in the trial. Trials are self-paced with a time limit. Participants can use the mouse to click on any of the variables to select their value (blue=TRUE,orange=FALSE). A light bulb above each clause indicates whether a clause evaluates to TRUE (light on) given the selected values of the variables underneath it. The number of clicks in each trial has a limit chosen by the experimenter. When participants are ready to submit their solution, they press a button to advance from the screen displaying the instance to the response screen where they responded YES or NO. There is a time limit to respond.
 
+![image](SAT.png)
+
 ## SETUP
 
 Input/Output data folders are located in Assets/DATAinf. This folder has to be added manually to the game after building.
