@@ -61,6 +61,8 @@ Instance information. Each file is a different instance of the problem.
 Files must be added sequentially (i.e. 1,2,3,…). Except for “param” all Variables must not be floats (i.e. integers, strings…)
 
 Example:
+
+```
 variables:[1, 2, 4, 2, 3, 4, 1, 2, 4, 2, 3, 4, 2, 3, 5, 1, 2, 3, 1, 4, 5, 3, 4, 5, 1, 3, 5, 3, 4, 5, 1, 2, 5, 1, 2, 5, 1, 3, 4, 2, 3, 5, 2, 3, 4, 1, 2, 5, 1, 2, 4, 1, 4, 5]
 literals:[1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0]
 nvariables:5
@@ -70,6 +72,7 @@ ratio:3.6
 problemId:3.607-279
 solution:1
 type:6
+```
 
 
 ## Game controls:
