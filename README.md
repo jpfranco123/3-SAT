@@ -7,6 +7,7 @@ In order to represent this in an accessible way to participants we developed a t
 Each trial presents a different instance of SAT. At the beginning of each trial, participants are presented with a different instance of the 3SAT problem. A bar in the top-right corner of the screen indicated the time remaining in the trial. Trials are self-paced with a time limit. Participants can use the mouse to click on any of the variables to select their value (blue=TRUE,orange=FALSE). A light bulb above each clause indicates whether a clause evaluates to TRUE (light on) given the selected values of the variables underneath it. The number of clicks in each trial has a limit chosen by the experimenter. When participants are ready to submit their solution, they press a button to advance from the screen displaying the instance to the response screen where they responded YES or NO. There is a time limit to respond.
 
 ## SETUP
+
 Input/Output data folders are located in Assets/DATAinf. This folder has to be added manually to the game after building.
 
 This is the structure of the folder:
@@ -33,9 +34,11 @@ NameOfTheVariable2:Value2
 …
 
 **layoutParam.txt**
+
 Relevant Parameters for the layout of the screen. All Variables must be INTEGERS.
 
 **param.txt**
+
 Relevant Parameters of the task. All Variables must be INTEGERS or vectors of INTEGERS.
 timeRest1:=Time for the inter-trial Break.
 timeRest2:=Time for the inter-blocks Break.
@@ -44,6 +47,7 @@ timeAnswer:=Time given to answer.
 maxClicks:=Maximum number of clicks allowed.
 
 **1_param2.txt,2_param2.txt...**
+
 Variables can be allocated between param.txt and param2.txt with no effect on the game; however there must not be repeated definitions of variables. The distinction is done because param2.txt is an output from the instance selection program (e.g python).
 numberOfInstances:=Number of instances to be imported. The files uploaded are 			automatically i1-i”numberOfInstances”
 numberOfBlocks:=Number of blocks.
@@ -52,6 +56,7 @@ instanceRandomization:=Sequence of instances to be randomised. The vector must h
 
 
 **i1.txt,i2.txt,…**
+
 Instance information. Each file is a different instance of the problem. 
 Files must be added sequentially (i.e. 1,2,3,…). Except for “param” all Variables must not be floats (i.e. integers, strings…)
 
@@ -68,6 +73,7 @@ type:6
 
 
 ## Game controls:
+
 - Type your ID and click enter.
 - Type a randomisation number from 1 to 50 (this depends in the number of i_param2.txt files you have.) and click enter.
 - Click space bar in order to start.
